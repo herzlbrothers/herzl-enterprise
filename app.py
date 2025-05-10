@@ -3,18 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import json, os
 from datetime import datetime
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-from dotenv import load_dotenv
-
-
-load_dotenv()
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
-
+app.secret_key ="herzlblogsupersecret123"
 
 # 🔧 Kommentarhandling
 def handle_comments(page_key, user_input=None, user_name=None):
