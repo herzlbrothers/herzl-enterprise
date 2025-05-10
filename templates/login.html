@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>🔐 Login für Herzl Blog</h2>
+
+<form method="post" action="{{ url_for('login') }}">
+    <label for="username">Benutzername:</label><br>
+    <input type="text" id="username" name="username"><br><br>
+
+    <label for="password">Passwort:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+
+    <button type="submit">Einloggen</button>
+</form>
+{% endblock %}

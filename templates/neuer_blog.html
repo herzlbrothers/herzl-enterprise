@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>📝 Neuen Blogbeitrag erstellen</h2>
+
+<form method="post">
+    <label>Titel:</label>
+    <input type="text" name="title" required>
+
+    <label>Inhalt:</label>
+    <textarea name="content" rows="6" required></textarea>
+
+    <label>Kategorie:</label>
+    <select name="kategorie" required>
+        <option value="">-- Kategorie wählen --</option>
+        <option value="KI">KI</option>
+        <option value="Politik">Politik</option>
+        <option value="Business">Business</option>
+        <option value="Lifestyle">Lifestyle</option>
+        <option value="Strategie">Strategie</option>
+    </select>
+
+   <button type="submit" class="mini-button">Blog speichern</button>
+
+</form>
+{% endblock %}

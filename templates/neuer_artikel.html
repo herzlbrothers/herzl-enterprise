@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        <h2>Neuen Artikel schreiben</h2>
+        <form method="post">
+            <label for="title">Titel:</label>
+            <input type="text" name="title" required>
+
+            <label for="content">Inhalt:</label>
+            <textarea name="content" rows="8" required></textarea>
+
+            <label for="kategorie">Kategorie:</label>
+            <select name="kategorie" required>
+                {% for kat in kategorien %}
+                <option value="{{ kat }}">{{ kat }}</option>
+                {% endfor %}
+            </select>
+
+            <label>
+                <input type="checkbox" name="draft">
+                Als Entwurf speichern
+            </label>
+            
+
+            <button type="submit" class="mini-button">Artikel veröffentlichen</button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

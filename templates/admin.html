@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>🛠 Admin-Bereich</h2>
+
+<p>Willkommen, {{ user }}!</p>
+
+
+<h3>Was möchtest du tun?</h3>
+<ul class="admin-panel">
+    <li><a href="{{ url_for('neuer_blog') }}">📝 Neuen Blog schreiben</a></li>
+    <li><a href="{{ url_for('neuer_artikel') }}">📄 Neuen Artikel schreiben</a></li>
+    <li><a href="{{ url_for('blog') }}">📚 Blog anzeigen</a></li>
+    <li><a href="{{ url_for('artikel') }}">🗞️ Artikel anzeigen</a></li>
+    <li><a href="{{ url_for('logout') }}">🚪 Logout</a></li>
+</ul>
+
+
+{% endblock %}

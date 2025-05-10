@@ -1,0 +1,81 @@
+{
+  "simon": [
+    {
+      "date": "2023-01-10",
+      "title": "Erste Python-Projekte",
+      "description": "Begann mit ersten kleinen Automatisierungen und Mini-Tools."
+      },
+    {
+      "date": "2023-04-05",
+      "title": "Grundlagen Webentwicklung",
+      "description": "Lernte HTML, CSS und JavaScript, baute erste einfache Seiten."
+    },
+    {
+      "date": "2023-07-12",
+      "title": "Flask kennengelernt",
+      "description": "Erste Webanwendungen mit Flask – lokal gestartet, dann skaliert."
+    },
+    {
+      "date": "2023-09-03",
+      "title": "Datenbankanbindung mit JSON",
+      "description": "Verstand, wie man Daten persistiert und strukturiert speichert."
+    },
+    {
+      "date": "2023-10-17",
+      "title": "AI-Experimente mit GPT",
+      "description": "Erste Tests mit der OpenAI-API – von Prompt-Logik bis Automatisierung."
+    },
+    {
+      "date": "2023-11-22",
+      "title": "Projektstruktur „Nuema“ gebaut",
+      "description": "Erstellung der modularen KI-Architektur zur Persönlichkeitsentwicklung."
+    },
+    {
+      "date": "2024-01-05",
+      "title": "Frontend komplett modularisiert",
+      "description": "Jede Komponente (Chat, Formulare, Inhalte) in Module überführt."
+    }
+  ],
+
+
+  "christoph":[
+    {
+      "date": "2022-12-10",
+      "title": "Erste Verkaufsprojekte",
+      "description": "Start mit Straßensales, Marktforschung & psychologischen Tests."
+    },
+    {
+      "date": "2023-03-01",
+      "title": "Bücherphase beginnt",
+      "description": "James Allen, Napoleon Hill & Dale Carnegie – täglich gelesen & angewandt."
+    },
+    {
+      "date": "2023-06-12",
+      "title": "Mentale Transformation",
+      "description": "Start des Glow-Up-Zyklus – Fitness, Sprache, Haltung, Selbstkontrolle."
+    },
+    {
+      "date": "2023-08-05",
+      "title": "Abbruch toxischer Kontakte",
+      "description": "Alle alten Beziehungen hinter sich gelassen – vollständiger Neustart."
+    },
+    {
+      "date": "2023-09-19",
+      "title": "Exfreundin verarbeitet",
+      "description": "Beginn der radikalen Selbstreflexion & Integration tiefer Wunden."
+    },
+    {
+      "date": "2024-01-01",
+      "title": "Gründungskonzept 'Herzl Movement'",
+      "description": "Vision einer Community, die auf Wahrheit, Energie & Klarheit basiert."
+    },
+    {
+      "date": "2024-02-10",
+      "title": "Strategie für YouTube & TikTok",
+      "description": "Formate, Sprache & Inszenierung als digitales Tagebuch."
+    }
+  
+  ]
+}
+  
+    

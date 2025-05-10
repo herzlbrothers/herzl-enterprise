@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+  <!-- EINLEITUNG -->
+  <div class="intro-box">
+    <h1>Willkommen auf dem Herzl Blog</h1>
+    <p>Wir sind Simon und Christoph Herzl – zwei Brüder, zwei Welten, ein Ziel: Technologie, Selbstentwicklung und Realität in einem Projekt zu vereinen, das Substanz hat.</p>
+    <p>Dieser Blog ist unser öffentliches Archiv: kein perfekter Showroom, sondern ein radikales, ehrliches Protokoll unseres Weges. Vom Schmerz zur Strategie. Von der Idee zur Umsetzung.</p>
+    <p>Hier geht es um den Aufbau echter Systeme – innerlich wie äußerlich: KI-Entwicklung, Vertrieb, Philosophie, Körpertransformation, psychologische Wirkung, Business-Aufbau und emotionale Tiefe. Alles dokumentiert, sichtbar, nachvollziehbar.</p>
+    <p>Kein Hochglanz. Kein Lärm. Sondern Fokus. Wenn du bereit bist, selbst zu denken – bist du hier richtig.</p>
+  </div>
+
+  <!-- PROFILKARTEN -->
+  <div class="profil-row">
+    <div class="profil-card">
+      <img src="{{ url_for('static', filename='img/simon.jpg') }}" alt="Simon">
+      <h2>Simon Herzl</h2>
+      <p>Systemarchitekt, KI-Entwickler, Backend-Zauberer. Simon denkt in Code, baut mit Logik und lebt für Autonomie. Sein Ziel: eine KI bauen, die unabhängig, lernfähig und nutzerzentriert arbeitet – und gleichzeitig ein Leben führen, das auf Klarheit, Disziplin und Tiefe basiert.</p>
+      <p>Er ist der ruhige Kopf, der die Vision in Struktur verwandelt. Mit Python, Flask, LangChain und Strategie baut er die technische Grundlage des Projekts.</p>
+    </div>
+
+    <div class="profil-card">
+      <img src="{{ url_for('static', filename='img/christoph.jpg') }}" alt="Christoph">
+      <h2>Christoph Herzl</h2>
+      <p>Kommunikator, Verkäufer, Stratege. Christoph führt mit Präsenz, baut Vertrauen auf, verkauft ohne Tricks – und denkt in Wirkung. Sein Ziel: emotionale Tiefe mit wirtschaftlicher Klarheit kombinieren, um langfristig Menschen zu inspirieren und zu führen.</p>
+      <p>Er ist die Stimme nach außen, die Energie nach innen. Der Initiator der Community, der Verkäufer des Systems, der emotionale Kern der Marke.</p>
+    </div>
+  </div>
+
+  <!-- LEBENSLAUF -->
+  <h2 style="text-align: center; margin-top: 40px;">Lebenslauf / Projekte</h2>
+
+<div class="timeline-wrapper">
+    <div class="timeline-side">
+        <img src="{{ url_for('static', filename='img/simon_timeline.jpg') }}" alt="Simon">
+    </div>
+
+    <div class="timeline-content">
+        <div class="timeline-column">
+            <h3>Simon</h3>
+            {% for e in simon_timeline[:4] %}
+    <div class="timeline-entry">
+        <div class="date">{{ e.date }}</div>
+        <strong>{{ e.title }}</strong>
+        <p>{{ e.description }}</p>
+    </div>
+{% endfor %}
+<div id="simon-extra" style="display: none;">
+  {% for e in simon_timeline[4:] %}
+    <div class="timeline-entry">
+        <div class="date">{{ e.date }}</div>
+        <strong>{{ e.title }}</strong>
+        <p>{{ e.description }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+        
+        <button onclick="toggleTimeline('simon')" class="mini-button" style="margin-top: 10px;">Mehr anzeigen</button>
+        
+        </div>
+        <div class="timeline-column">
+            <h3>Christoph</h3>
+            {% for e in christoph_timeline[:4] %}
+    <div class="timeline-entry">
+        <div class="date">{{ e.date }}</div>
+        <strong>{{ e.title }}</strong>
+        <p>{{ e.description }}</p>
+    </div>
+{% endfor %}
+<div id="christoph-extra" style="display: none;">
+  {% for e in christoph_timeline[4:] %}
+    <div class="timeline-entry">
+        <div class="date">{{ e.date }}</div>
+        <strong>{{ e.title }}</strong>
+        <p>{{ e.description }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+<button onclick="toggleTimeline('christoph')" class="mini-button" style="margin-top: 10px;">Mehr anzeigen</button>
+
+        </div>
+    </div>
+
+    <div class="timeline-side">
+        <img src="{{ url_for('static', filename='img/christoph_timeline.jpg') }}" alt="Christoph">
+    </div>
+</div>
+
+  
+<div class="start-column">
+
+      <!-- hier die 3 start-boxen rein -->
+  
+
+        <div class="start-box events-box">
+          <h3>🔔 Events</h3>
+          <ul>
+              <li>Event 1 – 04. Mai</li>
+              <li>Event 2 – 10. Mai</li>
+          </ul>
+        </div>
+      
+        <div class="start-box blogeintrag-box">
+          <h3>📰 Neuester Blogeintrag</h3>
+          {% if blog_teaser %}
+              <p>
+                  <strong>{{ blog_teaser.title }}</strong><br>
+                  <em>Von {{ blog_teaser.autor if blog_teaser.autor else 'Unbekannt' }} | Kategorie: {{ blog_teaser.kategorie }}</em><br>
+                  {{ blog_teaser.content[:100] }}...
+              </p>
+              <a href="{{ url_for('blog_eintrag', eintrag_id=blog_teaser.id) }}" class="mini-button">Jetzt lesen</a>
+
+          {% else %}
+              <p>Kein Eintrag verfügbar.</p>
+          {% endif %}
+        </div>
+      
+        <div class="start-box artikel-box">
+          <h3>🗞️ Neuester Artikel</h3>
+          {% if artikel_teaser %}
+              <p>
+                  <strong>{{ artikel_teaser.title }}</strong><br>
+                  <em>Von {{ artikel_teaser.autor if artikel_teaser.autor else "Unbekannt" }} | Kategorie: {{ artikel_teaser.kategorie }}</em><br>
+                  {{ artikel_teaser.content[:100] }}...
+              </p>
+             <a href="{{ url_for('artikel', highlight=artikel_teaser.id) }}" class="mini-button">Jetzt lesen</a>
+
+          {% else %}
+              <p>Noch kein Artikel vorhanden.</p>
+          {% endif %}
+        </div>
+      
+        <div class="start-box social-box">
+          <h3>🌐 Folge uns auf Social Media</h3>
+          <p>Bleib auf dem Laufenden mit exklusiven Updates, Behind the Scenes und neuen Videos:</p>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="https://x.com/HERZLBROTHERS" target="_blank">🕊️ Twitter / X: @HERZLBROTHERS</a></li>
+            <li><a href="https://www.instagram.com/herzlbrothers" target="_blank">📸 Instagram: @herzlbrothers</a></li>
+            <li><a href="https://www.youtube.com/@HerzlBrothers" target="_blank">▶️ YouTube-Kanal ansehen</a></li>
+          </ul>
+        </div>
+      
+      </div>
+      
+      
+
+<script>
+    function toggleTimeline(name) {
+        const block = document.getElementById(name + '-extra');
+        const button = event.target;
+        if (block.style.display === "none") {
+            block.style.display = "block";
+            button.textContent = "Weniger anzeigen";
+        } else {
+            block.style.display = "none";
+            button.textContent = "Mehr anzeigen";
+        }
+    }
+    </script>
+    
+
+{% endblock %}

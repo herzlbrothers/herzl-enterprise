@@ -1,0 +1,48 @@
+<!-- templates/blog_eintrag.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="eintrag-container"></div>
+
+    
+    <div class="card">
+        <h2>{{ beitrag.title }}</h2>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <a href="{{ url_for('home') }}" class="mini-button">⬅️ Zurück zur Startseite</a>
+            <a href="{{ url_for('blog') }}" class="mini-button">Weitere Blogbeiträge ➡️</a>
+        </div>
+        
+        <p><em>Kategorie: {{ beitrag.kategorie }}</em></p>
+        <p>{{ beitrag.content }}</p>
+    </div>
+
+    <div class="card">
+        <h3>💬 Kommentare</h3>
+        {% if comments %}
+            {% for kom in comments %}
+                <div class="comment-box">
+                    <strong>{{ kom.user }}</strong> schrieb am {{ kom.timestamp }}:<br>
+                    {{ kom.text }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Keine Kommentare vorhanden.</p>
+        {% endif %}
+    </div>
+
+    {% if 'user' in session %}
+    <div class="card">
+        <h3>📝 Kommentieren</h3>
+        <form method="post">
+            <textarea name="comment" placeholder="Dein Kommentar..." required></textarea>
+           <button type="submit" class="mini-button">Absenden</button>
+
+        </form>
+    </div>
+    {% else %}
+        <p><em>Bitte <a href="{{ url_for('login') }}">einloggen</a>, um zu kommentieren.</em></p>
+    {% endif %}
+</div>
+
+
+{% endblock %}

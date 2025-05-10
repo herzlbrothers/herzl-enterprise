@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Herzl Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+
+<body>
+    
+
+    <header>
+        <h1>Herzl Blog</h1>
+    </header>
+    
+    <div class="layout">
+        <nav class="sidebar">
+            <div class="sidebar-inner">
+                <a href="{{ url_for('home') }}"
+   class="{% if request.path == '/' %}sidebar-active{% endif %}"> Start</a>
+
+                <a href="{{ url_for('artikel') }}"
+   class="{% if request.path == '/artikel' %}sidebar-active{% endif %}"> Artikel</a>
+   <a href="{{ url_for('blog') }}"
+   class="{% if request.path.startswith('/blog') %}sidebar-active{% endif %}"> Blog</a>
+
+   <a href="{{ url_for('chat') }}"
+   class="{% if request.path.startswith('/chat') %}sidebar-active{% endif %}"> KI-Chat</a>
+                {% if 'user' in session %}
+                    <a href="{{ url_for('admin') }}"> Admin</a>
+                    <a href="{{ url_for('logout') }}"> Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}"> Login</a>
+                {% endif %}
+            </div>
+        </nav>
+        
+        
+    
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Herzl Enterprises</p>
+    </footer>
+    <!-- Newsletter-Button -->
+<div style="position: fixed; bottom: 20px; right: 20px;">
+    <button onclick="openNewsletterModal()" class="link-button">📩 Für Newsletter anmelden</button>
+</div>
+
+<!-- Modal -->
+<div id="newsletterModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+        <h3>Newsletter abonnieren</h3>
+        <form method="POST" action="{{ url_for('newsletter') }}">
+            <input type="text" name="name" placeholder="Dein Name (optional)">
+            <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required>
+           <button type="submit" class="mini-button">Anmelden</button>
+            <button type="button" onclick="closeNewsletterModal()" style="margin-top: 10px;">Abbrechen</button>
+        </form>
+        
+    </div>
+</div>
+
+<script>
+    function openNewsletterModal() {
+        document.getElementById('newsletterModal').style.display = 'flex';
+    }
+
+    function closeNewsletterModal() {
+        document.getElementById('newsletterModal').style.display = 'none';
+    }
+</script>
+{% if session.get('newsletter_status') %}
+<div class="overlay">
+  <div class="confirmation-box">
+    <button class="close-popup" onclick="closeConfirmation()">×</button>
+    {% if session.get('newsletter_status') == 'success' %}
+      <h3>Newsletter Anmeldung</h3>
+      <p>Deine E-Mail wurde erfolgreich weitergeleitet.<br>Willkommen im Club!</p>
+    {% else %}
+      <h3>Fehler</h3>
+      <p>Bitte gib eine gültige E-Mail-Adresse ein.</p>
+    {% endif %}
+  </div>
+</div>
+<script>
+  function closeConfirmation() {
+    document.querySelector('.overlay').style.display = 'none';
+  }
+</script>
+{% set _ = session.pop('newsletter_status', None) %}
+{% endif %}
+
+</body>
+</html>

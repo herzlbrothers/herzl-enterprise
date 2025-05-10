@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>🤖 KI-Helfer</h2>
+<p>Hier kannst du Artikel erklären, zusammenfassen oder umschreiben lassen.</p>
+
+<form method="post">
+    <textarea name="user_input" placeholder="Füge hier den Artikel oder Text ein..." rows="6"></textarea><br>
+    <select name="action">
+        <option value="summary">Zusammenfassen</option>
+        <option value="explain">Erklären</option>
+        <option value="rewrite">Umschreiben</option>
+    </select><br>
+    <button type="submit">Senden</button>
+</form>
+
+<!-- Ergebnis-Box (Platzhalter) -->
+<div class="chat-result">
+    <p><em>Antwort der KI wird hier erscheinen...</em></p>
+</div>
+{% endblock %}

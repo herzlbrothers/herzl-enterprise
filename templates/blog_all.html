@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="blog-container">
+    <h2 class="blog-heading">Alle Blogs</h2>
+
+    <form method="get">
+        <label>Kategorie:</label>
+        <select name="kategorie" onchange="this.form.submit()">
+            <option value="">Alle</option>
+            {% for kat in kategorien %}
+            <option value="{{ kat }}" {% if kat == ausgewählt %}selected{% endif %}>{{ kat }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <div class="blog-spalten-container">
+        <!-- Simon -->
+        <div class="blog-spalte">
+            <h3 class="blog-autor">Simon</h3>
+            {% for beitrag in blogs.simon %}
+                {% if not ausgewählt or beitrag.kategorie == ausgewählt %}
+                <div class="card blog-box">
+                    <h3>{{ beitrag.title }}</h3>
+                    <p>{{ beitrag.content[:200] }}...</p>
+                    <em>Kategorie: {{ beitrag.kategorie }}</em><br>
+                    <a href="{{ url_for('blog_eintrag', eintrag_id=beitrag.id) }}" class="mini-button">Jetzt lesen</a>
+
+                    <h4>Top Kommentare</h4>
+                    {% set kommentare = get_comments(beitrag.id) %}
+                    {% for kom in kommentare[:2] %}
+                        <div class="comment-box">
+                            <strong>{{ kom.user }}</strong>: {{ kom.text }}
+                        </div>
+                    {% endfor %}
+
+                    {% if 'user' in session %}
+                        <form method="post" action="{{ url_for('blog') }}">
+                            <input type="hidden" name="beitrag_id" value="{{ beitrag.id }}">
+                            <textarea name="comment" placeholder="Kommentieren..."></textarea>
+                            <button type="submit">Absenden</button>
+                        </form>
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Christoph -->
+        <div class="blog-spalte">
+            <h3 class="blog-autor">Christoph</h3>
+            {% for beitrag in blogs.christoph %}
+                {% if not ausgewählt or beitrag.kategorie == ausgewählt %}
+                <div class="card blog-box">
+                    <h3>{{ beitrag.title }}</h3>
+                    <p>{{ beitrag.content[:200] }}...</p>
+                    <em>Kategorie: {{ beitrag.kategorie }}</em><br>
+                    <a href="{{ url_for('blog_eintrag', eintrag_id=beitrag.id) }}" class="mini-button">Jetzt lesen</a>
+
+                    <h4>Top Kommentare</h4>
+                    {% set kommentare = get_comments(beitrag.id) %}
+                    {% for kom in kommentare[:2] %}
+                        <div class="comment-box">
+                            <strong>{{ kom.user }}</strong>: {{ kom.text }}
+                        </div>
+                    {% endfor %}
+
+                    {% if 'user' in session %}
+                        <form method="post" action="{{ url_for('blog') }}">
+                            <input type="hidden" name="beitrag_id" value="{{ beitrag.id }}">
+                            <textarea name="comment" placeholder="Kommentieren..."></textarea>
+                            <button type="submit">Absenden</button>
+                        </form>
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a class="link-button" href="{{ url_for('artikel') }}">← Alle Artikel</a>
+    </div>
+    
+    <div class="card">
+        <h2>{{ artikel.title }}</h2>
+        <p><em>Kategorie: {{ artikel.kategorie }}</em></p>
+        <p>{{ artikel.content }}</p>
+    </div>
+
+    <div class="card">
+        <h3>💬 Kommentare</h3>
+        {% if comments %}
+        {% for kom in comments %}
+    {% set i = loop.index0 %}
+
+        <div class="comment-box">
+            <strong>{{ kom.user }}</strong>: {{ kom.text }}<br>
+            <small>{{ kom.timestamp }}</small>
+    
+            {% if kom.replies %}
+                <div class="reply-box">
+                    {% for reply in kom.replies %}
+                        <div class="comment-reply">
+                            <strong>{{ reply.user }}</strong>: {{ reply.text }}
+                            <small>({{ reply.timestamp }})</small>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+    
+            {% if 'user' in session %}
+            <form method="post" action="{{ url_for('antwort') }}" class="reply-form">
+                <input type="hidden" name="beitrag_id" value="{{ artikel.id }}">
+
+                <input type="hidden" name="kommentar_index" value="{{ i }}">
+                <input type="text" name="antwort" placeholder="Antworten..." required>
+                <button type="submit">↪</button>
+            </form>
+            {% endif %}
+        </div>
+    {% endfor %}
+    
+        {% else %}
+            <p>Keine Kommentare vorhanden.</p>
+        {% endif %}
+    </div>
+
+    {% if 'user' in session %}
+    <div class="card">
+        <h3>📝 Kommentieren</h3>
+        <form method="post">
+            <textarea name="comment" placeholder="Dein Kommentar..." required></textarea>
+           <button type="submit" class="mini-button">Absenden</button>
+
+            
+        </form>
+    </div>
+    {% else %}
+        <p><em>Bitte <a href="{{ url_for('login') }}">einloggen</a>, um zu kommentieren.</em></p>
+    {% endif %}
+</div>
+<div style="margin-top: 40px; text-align: center;">
+    <a href="{{ url_for('artikel') }}">🔙 Weiter zu allen Artikeln</a>
+</div>
+
+{% endblock %}

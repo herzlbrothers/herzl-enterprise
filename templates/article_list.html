@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+<div style="max-width: 900px; margin: auto;"></div>
+
+<h2 class="artikel-heading">Artikel</h2>
+
+
+<form method="get">
+    <label>Kategorie:</label>
+    <select name="kategorie" onchange="this.form.submit()">
+        <option value="">Alle</option>
+        {% for kat in kategorien %}
+        <option value="{{ kat }}" {% if kat == ausgewählt %}selected{% endif %}>{{ kat }}</option>
+        {% endfor %}
+    </select>
+</form>
+{% if highlight_artikel %}
+<div class="highlight-box">
+    <h2>{{ highlight_artikel.title }}</h2>
+    <em>Von {{ highlight_artikel.autor }} | Kategorie: {{ highlight_artikel.kategorie }}</em>
+    <p>{{ highlight_artikel.content[:300] }}...</p>
+    <a href="{{ url_for('artikel_eintrag', artikel_id=highlight_artikel.id) }}" class="mini-button">Jetzt lesen</a>
+</div>
+{% endif %}
+
+{% for artikel in artikel_liste %}
+    {% if not ausgewählt or artikel.kategorie == ausgewählt %}
+    <div class="card">
+        <h3>{{ artikel.title }}</h3>
+        <p>{{ artikel.content[:200] }}...</p>
+        <a href="{{ url_for('artikel_eintrag', artikel_id=artikel.id) }}" class="mini-button">Mehr lesen</a>
+
+        <em>Kategorie: {{ artikel.kategorie }}</em><br>
+        <strong>Veröffentlicht: {{ artikel.timestamp }}</strong>
+
+        <h4>Top Kommentare</h4>
+        {% set kommentare = get_comments(artikel.id) %}
+        {% for kom in kommentare[:2] %}
+            <div class="comment-box">
+                <strong>{{ kom.user }}</strong>: {{ kom.text }}
+            </div>
+        {% endfor %}
+
+        {% if 'user' in session %}
+            <form method="post" action="{{ url_for('artikel') }}">
+                <input type="hidden" name="beitrag_id" value="{{ artikel.id }}">
+                <textarea name="comment" placeholder="Kommentieren..."></textarea>
+                <button type="submit">Absenden</button>
+            </form>
+        {% else %}
+            <p><em>Einloggen, um zu kommentieren.</em></p>
+        {% endif %}
+        <hr>
+    </div> <!-- Schließendes div hinzugefügt -->
+    {% endif %}
+{% endfor %}
+</div>
+</div>
+{% endblock %}
