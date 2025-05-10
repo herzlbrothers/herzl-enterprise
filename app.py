@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask import Flask, render_template, request, redirect, url_for, session
 import json, os
 from datetime import datetime
-import openai
 import os
 from dotenv import load_dotenv
 
