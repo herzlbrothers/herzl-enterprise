@@ -33,64 +33,59 @@
   <h2 style="text-align: center; margin-top: 40px;">Lebenslauf / Projekte</h2>
 
 <div class="timeline-wrapper">
-    <div class="timeline-side">
-        <img src="{{ url_for('static', filename='img/simon_timeline.jpg') }}" alt="Simon">
-    </div>
+  <!-- Christoph: Bild + Timeline -->
+  <div class="timeline-side">
+    <img src="{{ url_for('static', filename='img/christoph_timeline.jpg') }}" class="timeline-bild" alt="Christoph">
+  </div>
 
-    <div class="timeline-content">
-        <div class="timeline-column">
-            <h3>Simon</h3>
-            {% for e in simon_timeline[:4] %}
+  <div class="timeline-column">
+    <h3>Christoph</h3>
+    {% for e in christoph_timeline[:4] %}
     <div class="timeline-entry">
         <div class="date">{{ e.date }}</div>
         <strong>{{ e.title }}</strong>
         <p>{{ e.description }}</p>
     </div>
-{% endfor %}
-<div id="simon-extra" style="display: none;">
-  {% for e in simon_timeline[4:] %}
+    {% endfor %}
+    <div id="christoph-extra" style="display: none;">
+      {% for e in christoph_timeline[4:] %}
+      <div class="timeline-entry">
+          <div class="date">{{ e.date }}</div>
+          <strong>{{ e.title }}</strong>
+          <p>{{ e.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <button onclick="toggleTimeline('christoph')" class="mini-button" style="margin-top: 10px;">Mehr anzeigen</button>
+  </div>
+
+  <!-- Simon: Timeline + Bild -->
+  <div class="timeline-column">
+    <h3>Simon</h3>
+    {% for e in simon_timeline[:4] %}
     <div class="timeline-entry">
         <div class="date">{{ e.date }}</div>
         <strong>{{ e.title }}</strong>
         <p>{{ e.description }}</p>
     </div>
-  {% endfor %}
+    {% endfor %}
+    <div id="simon-extra" style="display: none;">
+      {% for e in simon_timeline[4:] %}
+      <div class="timeline-entry">
+          <div class="date">{{ e.date }}</div>
+          <strong>{{ e.title }}</strong>
+          <p>{{ e.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <button onclick="toggleTimeline('simon')" class="mini-button" style="margin-top: 10px;">Mehr anzeigen</button>
+  </div>
+
+  <div class="timeline-side">
+    <img src="{{ url_for('static', filename='img/simon_timeline.jpg') }}" class="timeline-bild" alt="Simon">
+  </div>
 </div>
 
-        
-        <button onclick="toggleTimeline('simon')" class="mini-button" style="margin-top: 10px;">Mehr anzeigen</button>
-        
-        </div>
-        <div class="timeline-column">
-            <h3>Christoph</h3>
-            {% for e in christoph_timeline[:4] %}
-    <div class="timeline-entry">
-        <div class="date">{{ e.date }}</div>
-        <strong>{{ e.title }}</strong>
-        <p>{{ e.description }}</p>
-    </div>
-{% endfor %}
-<div id="christoph-extra" style="display: none;">
-  {% for e in christoph_timeline[4:] %}
-    <div class="timeline-entry">
-        <div class="date">{{ e.date }}</div>
-        <strong>{{ e.title }}</strong>
-        <p>{{ e.description }}</p>
-    </div>
-  {% endfor %}
-</div>
-
-<button onclick="toggleTimeline('christoph')" class="mini-button" style="margin-top: 10px;">Mehr anzeigen</button>
-
-        </div>
-    </div>
-
-    <div class="timeline-side">
-        <img src="{{ url_for('static', filename='img/christoph_timeline.jpg') }}" alt="Christoph">
-    </div>
-</div>
-
-  
 <div class="start-column">
 
       <!-- hier die 3 start-boxen rein -->
