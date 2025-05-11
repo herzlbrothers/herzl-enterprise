@@ -17,6 +17,13 @@
       "title": "frewsgfawg",
       "content": "ergvarewsgvre",
       "kategorie": "KI"
+    },
+    {
+      "id": "simon_1746975291",
+      "title": "hrtshhartttttt",
+      "content": "hartttt",
+      "kategorie": "KI",
+      "autor": "simon"
     }
   ],
   "christoph": [
@@ -25,6 +32,15 @@
       "title": "Verkaufstagebuch KW18",
       "content": "Was ich im Direktvertrieb gelernt habe...",
       "kategorie": "Business"
+    }
+  ],
+  "Simon": [
+    {
+      "id": "simon_1746974834",
+      "title": "jenseits des gro\u00dfen",
+      "content": "rabarba",
+      "kategorie": "Politik",
+      "autor": "Simon"
     }
   ]
 }

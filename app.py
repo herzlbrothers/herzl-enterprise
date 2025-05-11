@@ -5,7 +5,8 @@ from datetime import datetime
 import os
 
 app = Flask(__name__)
-app.secret_key ="herzlblogsupersecret123"
+app.secret_key = os.getenv("SECRET_KEY", "fallback123")
+
 
 # 🔧 Kommentarhandling
 def handle_comments(page_key, user_input=None, user_name=None):
@@ -93,7 +94,7 @@ def neuer_blog():
         title = request.form['title']
         content = request.form['content']
         kategorie = request.form['kategorie']
-        author = request.form['autor']
+        author = request.form['autor'].lower()  # erzwinge kleinschreibung
 
         new_entry = {
     "id": f"{author.lower()}_{int(datetime.now().timestamp())}",

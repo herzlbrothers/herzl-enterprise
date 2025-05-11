@@ -1,8 +1,17 @@
 [
   {
+    "id": "Simon_1746974857",
+    "title": "hallo 1234",
+    "content": "gestern abend",
+    "kategorie": "KI",
+    "timestamp": "2025-05-11 16:47",
+    "draft": false,
+    "autor": "Simon"
+  },
+  {
     "id": "Simon_1723431234",
-    "title": "Wie KI unsere Welt verändert",
-    "content": "In den letzten Jahren hat sich Künstliche Intelligenz (KI) rasant entwickelt und beeinflusst nun fast jeden Bereich unseres Lebens: Medizin, Bildung, Finanzen und sogar zwischenmenschliche Beziehungen. Dieser Artikel beleuchtet konkrete Anwendungen, Chancen und Risiken.",
+    "title": "Wie KI unsere Welt ver\u00c3\u00a4ndert",
+    "content": "In den letzten Jahren hat sich K\u00c3\u00bcnstliche Intelligenz (KI) rasant entwickelt und beeinflusst nun fast jeden Bereich unseres Lebens: Medizin, Bildung, Finanzen und sogar zwischenmenschliche Beziehungen. Dieser Artikel beleuchtet konkrete Anwendungen, Chancen und Risiken.",
     "kategorie": "KI",
     "timestamp": "2024-11-25 10:45",
     "draft": false,
@@ -11,7 +20,7 @@
   {
     "id": "Christoph_1723431333",
     "title": "Die geheime Kraft der Psychologie im Verkauf",
-    "content": "Verkauf hat mehr mit Psychologie als mit Produkten zu tun. Warum Vertrauen wichtiger ist als Preis, wie Spiegelneuronen wirken und wie du dein Gegenüber führst, erfährst du in diesem detaillierten Artikel aus Sicht eines Verkaufsstrategen.",
+    "content": "Verkauf hat mehr mit Psychologie als mit Produkten zu tun. Warum Vertrauen wichtiger ist als Preis, wie Spiegelneuronen wirken und wie du dein Gegen\u00c3\u00bcber f\u00c3\u00bchrst, erf\u00c3\u00a4hrst du in diesem detaillierten Artikel aus Sicht eines Verkaufsstrategen.",
     "kategorie": "Strategie",
     "timestamp": "2024-11-26 08:30",
     "draft": false,
@@ -19,8 +28,8 @@
   },
   {
     "id": "Simon_1723431444",
-    "title": "Routine vs. Kreativität – Wie du beides meisterst",
-    "content": "Viele glauben, man müsse sich zwischen Struktur und kreativer Freiheit entscheiden. Der Schlüssel liegt aber im System: Wie du Routinen baust, die Kreativität fördern – mit Beispielen aus der Praxis, erklärt Simon.",
+    "title": "Routine vs. Kreativit\u00c3\u00a4t \u00e2\u20ac\u201c Wie du beides meisterst",
+    "content": "Viele glauben, man m\u00c3\u00bcsse sich zwischen Struktur und kreativer Freiheit entscheiden. Der Schl\u00c3\u00bcssel liegt aber im System: Wie du Routinen baust, die Kreativit\u00c3\u00a4t f\u00c3\u00b6rdern \u00e2\u20ac\u201c mit Beispielen aus der Praxis, erkl\u00c3\u00a4rt Simon.",
     "kategorie": "Lifestyle",
     "timestamp": "2024-11-27 13:15",
     "draft": false,
