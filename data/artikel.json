@@ -1,51 +1,29 @@
-{
-  "simon": [
-    {
-      "id": "simon_1746361926",
-      "title": "Systematisch frei – Warum Disziplin die ultimative Form von Freiheit ist",
-      "content": "Freiheit. Ein Wort, das in unserer Generation fast inflationär benutzt wird. Jeder will frei sein – finanziell, emotional, geografisch. Doch während viele diesem Ideal hinterherjagen, verwechseln sie Freiheit mit Beliebigkeit. Sie glauben, Freiheit bedeute, zu tun, was man will, wann man will. Aber wer so lebt, ist kein freier Mensch – sondern ein Spielball seiner Impulse.\n\nEchte Freiheit beginnt dort, wo Selbstbeherrschung einzieht. Disziplin ist nicht das Gegenteil von Freiheit, sondern ihre Voraussetzung. Denn nur wer sich selbst führen kann, wird unabhängig von äußeren Umständen. Der, der seine Gedanken kontrolliert, kontrolliert sein Leben. Der, der sein Dopamin steuert, steuert sein Handeln. Und wer sein Handeln meistert, meistert seine Realität.\n\nIch habe es selbst erlebt. Früher war ich wie jeder andere: ständig am Handy, wenig Schlaf, wenig Struktur, immer abgelenkt. Ich dachte, ich sei frei, weil ich niemandem gehorchte. Doch in Wahrheit war ich gefangen – in endlosen Reizen, in ziellosem Denken. Erst als ich begann, mir klare Regeln zu setzen, wurde ich wirklich frei. 30 Minuten am Morgen ohne Handy. Feste Schlafzeiten. Bewusste Ernährung. Plötzlich hatte ich Energie, Klarheit, einen Plan.\n\nUnd das ist der Punkt: Ein System befreit dich. Nicht, weil es dich einsperrt, sondern weil es dir Halt gibt in einer Welt, die dich täglich zerreißt. Wenn du morgens weißt, was du tust, wirst du abends wissen, wer du warst. Wenn du deine Zeit steuerst, wirst du nicht mehr gesteuert. Und wenn du deinen Weg wählst – bewusst und diszipliniert – wirst du nicht mehr suchen müssen.\n\nDisziplin ist nichts Kaltes. Sie ist eine stille Form der Selbstachtung. Wer sich selbst führen kann, der wird nicht mehr vom Leben geführt. Und genau das ist der erste Schritt in Richtung echter, systematischer Freiheit.",
-      "kategorie": "Lifestyle",
-      "timestamp": "2025-05-04 14:32",
-      "draft": false,
-      "autor": "Simon"
-    },
-    {
-      "id": "simon_1746287591",
-      "title": "Ramon der Große",
-      "content": "Er war 25 und hatte 999...",
-      "kategorie": "Lifestyle",
-      "timestamp": "2025-05-03 17:53",
-      "draft": false,
-      "autor": "Simon"
-    },
-    {
-      "id": "simon_1714700000",
-      "title": "Erster strukturierter Artikel",
-      "content": "Das ist ein Beispieltext von Simon.",
-      "kategorie": "KI",
-      "timestamp": "2025-05-03 17:00",
-      "draft": false,
-      "autor": "Simon"
-    }
-  ],
-  "christoph": [
-    {
-      "id": "christoph_1714700050",
-      "title": "Artikel von Christoph",
-      "content": "Dieser Artikel ist noch ein Entwurf.",
-      "kategorie": "Business",
-      "timestamp": "2025-05-03 17:01",
-      "draft": true,
-      "autor": "Christoph"
-    },
-    {
-      "id": "christoph_1746362123",
-      "title": "Vertrieb beginnt im Kopf",
-      "content": "Verkaufen ist keine Technik – es ist ein Zustand. Ein mentaler Modus, in dem du nicht überredest, sondern führst. In diesem Artikel zeige ich dir, wie du Druck aufbaust, Vertrauen schaffst und dich selbst dominierst, bevor du einen Kunden überzeugst.",
-      "kategorie": "Vertrieb",
-      "timestamp": "2025-05-05 10:12",
-      "draft": false,
-      "autor": "Christoph"
-    }
-  ]
-}
+[
+  {
+    "id": "Simon_1723431234",
+    "title": "Wie KI unsere Welt verändert",
+    "content": "In den letzten Jahren hat sich Künstliche Intelligenz (KI) rasant entwickelt und beeinflusst nun fast jeden Bereich unseres Lebens: Medizin, Bildung, Finanzen und sogar zwischenmenschliche Beziehungen. Dieser Artikel beleuchtet konkrete Anwendungen, Chancen und Risiken.",
+    "kategorie": "KI",
+    "timestamp": "2024-11-25 10:45",
+    "draft": false,
+    "autor": "Simon"
+  },
+  {
+    "id": "Christoph_1723431333",
+    "title": "Die geheime Kraft der Psychologie im Verkauf",
+    "content": "Verkauf hat mehr mit Psychologie als mit Produkten zu tun. Warum Vertrauen wichtiger ist als Preis, wie Spiegelneuronen wirken und wie du dein Gegenüber führst, erfährst du in diesem detaillierten Artikel aus Sicht eines Verkaufsstrategen.",
+    "kategorie": "Strategie",
+    "timestamp": "2024-11-26 08:30",
+    "draft": false,
+    "autor": "Christoph"
+  },
+  {
+    "id": "Simon_1723431444",
+    "title": "Routine vs. Kreativität – Wie du beides meisterst",
+    "content": "Viele glauben, man müsse sich zwischen Struktur und kreativer Freiheit entscheiden. Der Schlüssel liegt aber im System: Wie du Routinen baust, die Kreativität fördern – mit Beispielen aus der Praxis, erklärt Simon.",
+    "kategorie": "Lifestyle",
+    "timestamp": "2024-11-27 13:15",
+    "draft": false,
+    "autor": "Simon"
+  }
+]

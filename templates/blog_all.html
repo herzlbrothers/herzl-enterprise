@@ -34,13 +34,13 @@
                         </div>
                     {% endfor %}
 
-                    {% if 'user' in session %}
-                        <form method="post" action="{{ url_for('blog') }}">
-                            <input type="hidden" name="beitrag_id" value="{{ beitrag.id }}">
-                            <textarea name="comment" placeholder="Kommentieren..."></textarea>
-                            <button type="submit">Absenden</button>
-                        </form>
-                    {% endif %}
+                <form method="post">
+    <input type="hidden" name="beitrag_id" value="{{ beitrag.id }}">
+    <input type="text" name="user" placeholder="Dein Name (optional)">
+    <textarea name="comment" placeholder="Dein Kommentar..." required></textarea>
+    <button type="submit" class="mini-button">Absenden</button>
+</form>
+
                 </div>
                 {% endif %}
             {% endfor %}
@@ -65,13 +65,14 @@
                         </div>
                     {% endfor %}
 
-                    {% if 'user' in session %}
-                        <form method="post" action="{{ url_for('blog') }}">
-                            <input type="hidden" name="beitrag_id" value="{{ beitrag.id }}">
-                            <textarea name="comment" placeholder="Kommentieren..."></textarea>
-                            <button type="submit">Absenden</button>
-                        </form>
-                    {% endif %}
+                   <form method="post">
+    <input type="hidden" name="beitrag_id" value="{{ beitrag.id }}">
+    <input type="text" name="user" placeholder="Dein Name (optional)">
+    <textarea name="comment" placeholder="Dein Kommentar..." required></textarea>
+    <button type="submit" class="mini-button">Absenden</button>
+</form>
+
+
                 </div>
                 {% endif %}
             {% endfor %}

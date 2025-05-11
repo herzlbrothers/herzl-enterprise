@@ -6,26 +6,27 @@
         <h2>Neuen Artikel schreiben</h2>
         <form method="post">
             <label for="title">Titel:</label>
-            <input type="text" name="title" required>
+            <input type="text" name="title" id="title" required>
 
             <label for="content">Inhalt:</label>
-            <textarea name="content" rows="8" required></textarea>
+            <textarea name="content" id="content" rows="8" required></textarea>
 
             <label for="kategorie">Kategorie:</label>
-            <select name="kategorie" required>
+            <select name="kategorie" id="kategorie" required>
+                <option value="">-- Kategorie wählen --</option>
                 {% for kat in kategorien %}
                 <option value="{{ kat }}">{{ kat }}</option>
                 {% endfor %}
             </select>
 
-            <label>
-                <input type="checkbox" name="draft">
-                Als Entwurf speichern
-            </label>
-            
+            <label for="autor">Autor:</label>
+            <select name="autor" id="autor" required>
+                <option value="">-- Wähle Autor --</option>
+                <option value="Simon">Simon</option>
+                <option value="Christoph">Christoph</option>
+            </select>
 
             <button type="submit" class="mini-button">Artikel veröffentlichen</button>
-
         </form>
     </div>
 </div>

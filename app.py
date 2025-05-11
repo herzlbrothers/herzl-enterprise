@@ -40,10 +40,10 @@ def blog():
     ausgewählt = request.args.get("kategorie", "")
 
     # Kommentare speichern
-    if request.method == 'POST' and 'user' in session:
+    if request.method == 'POST':
         beitrag_id = request.form['beitrag_id']
         text = request.form['comment']
-        user = session['user']
+        user = request.form.get('user', '').strip() or "Gast"
         handle_comments(beitrag_id, text, user)
 
     return render_template("blog_all.html",
@@ -62,23 +62,26 @@ def blog_eintrag(eintrag_id):
         blogs = json.load(f)
 
     beitrag = None
-    for autor in blogs.values():
-        for post in autor:
+    for autor in blogs:
+        for post in blogs[autor]:
             if post['id'] == eintrag_id:
                 beitrag = post
                 break
+        if beitrag:
+            break
 
     if not beitrag:
         return "Beitrag nicht gefunden", 404
 
-    if request.method == 'POST' and 'user' in session:
+    if request.method == 'POST':
         comment = request.form['comment']
-        user = session['user']
+        user = request.form.get('user', '').strip() or "Gast"
         handle_comments(eintrag_id, comment, user)
         return redirect(url_for('blog_eintrag', eintrag_id=eintrag_id))
 
     comments = handle_comments(eintrag_id)
     return render_template('blog_eintrag.html', beitrag=beitrag, comments=comments)
+
 
 # 🔹 NEUEN BEITRAG SPEICHERN
 @app.route('/neuer_blog', methods=['GET', 'POST'])
@@ -90,13 +93,18 @@ def neuer_blog():
         title = request.form['title']
         content = request.form['content']
         kategorie = request.form['kategorie']
-        author = session['user']
+        author = request.form['autor']
+
         new_entry = {
-            "id": f"{author}_{int(datetime.now().timestamp())}",
-            "title": title,
-            "content": content,
-            "kategorie": kategorie
-        }
+    "id": f"{author.lower()}_{int(datetime.now().timestamp())}",
+    "title": title,
+    "content": content,
+    "kategorie": kategorie,
+    "autor": author
+}
+
+
+
 
         with open('data/blog.json') as f:
             blogs = json.load(f)
@@ -122,7 +130,7 @@ def neuer_artikel():
         content = request.form['content']
         kategorie = request.form['kategorie']
         draft = request.form.get('draft') == 'on'
-        author = session['user']
+        author = request.form['autor']  # Autor aus dem Formular
 
         new_entry = {
             "id": f"{author}_{int(datetime.now().timestamp())}",
@@ -130,16 +138,17 @@ def neuer_artikel():
             "content": content,
             "kategorie": kategorie,
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
-            "draft": draft
+            "draft": draft,
+            "autor": author
         }
 
         try:
             with open('data/artikel.json') as f:
                 artikel_daten = json.load(f)
         except:
-            artikel_daten = {}
+            artikel_daten = []
 
-        artikel_daten.setdefault(author, []).insert(0, new_entry)
+        artikel_daten.insert(0, new_entry)
 
         with open('data/artikel.json', 'w') as f:
             json.dump(artikel_daten, f, indent=2)
@@ -147,8 +156,6 @@ def neuer_artikel():
         return redirect(url_for('artikel'))
 
     return render_template('neuer_artikel.html', kategorien=kategorien)
-
-
 
 
 # 🔹 ARTIKEL mit KOMMENTAREN
@@ -195,9 +202,16 @@ def logout():
 
 @app.route('/')
 def home():
-    # Artikel laden
-    with open('data/artikel.json') as f:
-        artikel_data = json.load(f)
+    # Artikel laden (Liste!)
+    try:
+        with open('data/artikel.json') as f:
+            artikel_data = json.load(f)
+    except:
+        artikel_data = []
+
+    # Artikel nach Autor filtern
+    simon_artikel = [a for a in artikel_data if a.get('autor') == 'Simon']
+    christoph_artikel = [a for a in artikel_data if a.get('autor') == 'Christoph']
 
     # Blog laden
     with open('data/blog.json') as f:
@@ -207,26 +221,26 @@ def home():
     with open('data/timeline.json') as f:
         timeline_data = json.load(f)
 
-    # Daten rausholen
+    # Daten vorbereiten
     simon_timeline = timeline_data.get("simon", [])
     christoph_timeline = timeline_data.get("christoph", [])
 
     simon_blogs = blog_data.get("simon", [])
     christoph_blogs = blog_data.get("christoph", [])
 
-    simon_artikel = artikel_data.get("simon", [])
-    christoph_artikel = artikel_data.get("christoph", [])
-
     blog_teaser = simon_blogs[-1] if simon_blogs else None
     artikel_teaser = simon_artikel[-1] if simon_artikel else None
 
-    return render_template('home.html',
-                           simon_timeline=simon_timeline,
-                           christoph_timeline=christoph_timeline,
-                           blog_teaser=blog_teaser,
-                           artikel_teaser=artikel_teaser)
-
-
+    return render_template(
+        'home.html',
+        simon_timeline=simon_timeline,
+        christoph_timeline=christoph_timeline,
+        blog_teaser=blog_teaser,
+        artikel_teaser=artikel_teaser,
+        simon_artikel=simon_artikel[:3],
+        christoph_artikel=christoph_artikel[:3]
+    )
+ 
 @app.route('/newsletter', methods=['POST'])
 def newsletter():
     name = request.form.get('name') or "Kein Name angegeben"
@@ -265,23 +279,22 @@ def artikel():
     highlight_artikel = None
     artikel_liste = []
 
-    for autor in artikel_roh:
-        for beitrag in artikel_roh[autor]:
-            if not beitrag.get("draft", False):
-                if beitrag["id"] == highlight_id:
-                    highlight_artikel = beitrag
-                else:
-                    artikel_liste.append(beitrag)
+    for beitrag in artikel_roh:
+        if not beitrag.get("draft", False):
+            if beitrag["id"] == highlight_id:
+                highlight_artikel = beitrag
+            else:
+                artikel_liste.append(beitrag)
 
     artikel_liste = sorted(artikel_liste, key=lambda x: x['timestamp'], reverse=True)
 
     kategorien = ["KI", "Politik", "Business", "Lifestyle", "Strategie"]
     ausgewählt = request.args.get("kategorie", "")
 
-    if request.method == 'POST' and 'user' in session:
+    if request.method == 'POST':
         beitrag_id = request.form['beitrag_id']
         text = request.form['comment']
-        user = session['user']
+        user = request.form.get('user', '').strip() or "Gast"
         handle_comments(beitrag_id, text, user)
 
     return render_template("article_list.html",
@@ -292,36 +305,25 @@ def artikel():
         get_comments=handle_comments
     )
 
-
-
 @app.route('/artikel/<artikel_id>', methods=['GET', 'POST'])
 def artikel_eintrag(artikel_id):
     with open('data/artikel.json') as f:
         artikel_daten = json.load(f)
 
-    # Artikel suchen – durch alle Autoren iterieren
-    artikel = None
-    for autor in artikel_daten:
-        for beitrag in artikel_daten[autor]:
-            if beitrag["id"] == artikel_id:
-                artikel = beitrag
-                break
-        if artikel:
-            break
+    # Durchsuche flache Liste nach Artikel
+    artikel = next((a for a in artikel_daten if a["id"] == artikel_id), None)
 
     if not artikel:
         return "Artikel nicht gefunden", 404
 
-    # Kommentar hinzufügen
-    if request.method == 'POST' and 'user' in session:
+    if request.method == 'POST':
         comment = request.form['comment']
-        user = session['user']
+        user = request.form.get('user', '').strip() or "Gast"
         handle_comments(artikel_id, comment, user)
         return redirect(url_for('artikel_eintrag', artikel_id=artikel_id))
 
     comments = handle_comments(artikel_id)
     return render_template('artikel_eintrag.html', artikel=artikel, comments=comments)
-
 
 
 @app.route('/timeline')

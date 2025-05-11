@@ -50,22 +50,11 @@
         {% endif %}
     </div>
 
-    {% if 'user' in session %}
-    <div class="card">
-        <h3>📝 Kommentieren</h3>
-        <form method="post">
-            <textarea name="comment" placeholder="Dein Kommentar..." required></textarea>
-           <button type="submit" class="mini-button">Absenden</button>
+    <form method="post">
+    <input type="text" name="user" placeholder="Dein Name (optional)">
+    <textarea name="comment" placeholder="Dein Kommentar..." required></textarea>
+    <button type="submit" class="mini-button">Absenden</button>
+</form>
 
-            
-        </form>
-    </div>
-    {% else %}
-        <p><em>Bitte <a href="{{ url_for('login') }}">einloggen</a>, um zu kommentieren.</em></p>
-    {% endif %}
 </div>
-<div style="margin-top: 40px; text-align: center;">
-    <a href="{{ url_for('artikel') }}">🔙 Weiter zu allen Artikeln</a>
-</div>
-
 {% endblock %}

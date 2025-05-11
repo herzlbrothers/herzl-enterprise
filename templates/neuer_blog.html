@@ -3,14 +3,14 @@
 <h2>📝 Neuen Blogbeitrag erstellen</h2>
 
 <form method="post">
-    <label>Titel:</label>
-    <input type="text" name="title" required>
+    <label for="title">Titel:</label>
+    <input type="text" name="title" id="title" required>
 
-    <label>Inhalt:</label>
-    <textarea name="content" rows="6" required></textarea>
+    <label for="content">Inhalt:</label>
+    <textarea name="content" id="content" rows="6" required></textarea>
 
-    <label>Kategorie:</label>
-    <select name="kategorie" required>
+    <label for="kategorie">Kategorie:</label>
+    <select name="kategorie" id="kategorie" required>
         <option value="">-- Kategorie wählen --</option>
         <option value="KI">KI</option>
         <option value="Politik">Politik</option>
@@ -19,7 +19,14 @@
         <option value="Strategie">Strategie</option>
     </select>
 
-   <button type="submit" class="mini-button">Blog speichern</button>
+    <label for="autor">Autor:</label>
+    <select name="autor" id="autor" required>
+        <option value="">-- Wähle Autor --</option>
+        <option value="Simon">Simon</option>
+        <option value="Christoph">Christoph</option>
+    </select>
 
+    <button type="submit" class="mini-button">Blog speichern</button>
 </form>
 {% endblock %}
+
